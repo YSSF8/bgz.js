@@ -396,5 +396,53 @@ let canvasBg = {
             requestAnimationFrame(updateStars);
         };
         updateStars();
+    },
+    leaves: (element, { color = '#87ceeb', count = 50, speed = 1 } = {}) => {
+        const canvas = document.querySelector(element);
+        if (!canvas || canvas.tagName !== 'CANVAS') {
+            throw new Error('The selected element must be a canvas element');
+        }
+        const ctx = canvas.getContext('2d');
+        const leaves = [];
+        const hexToRgb = hex => {
+            const shorthandRegex = /^#?([a-f\d])([a-f\d])([a-f\d])$/i;
+            hex = hex.replace(shorthandRegex, (m, r, g, b) => r + r + g + g + b + b);
+            const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+            return result ? {
+                r: parseInt(result[1], 16),
+                g: parseInt(result[2], 16),
+                b: parseInt(result[3], 16)
+            } : null;
+        };
+        for (let i = 0; i < count; i++) {
+            leaves.push({
+                x: Math.random() * canvas.width,
+                y: Math.random() * canvas.height,
+                size: Math.random() * 10 + 10,
+                color: hexToRgb(color),
+                angle: Math.random() * 360,
+                speed: Math.random() * speed
+            });
+        }
+        const updateLeaves = () => {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            leaves.forEach(leaf => {
+                leaf.angle += Math.random() * 0.05 - 0.025;
+                leaf.y += leaf.speed;
+                if (leaf.x > canvas.width + 50 || leaf.x < -50 || leaf.y > canvas.height + 50 || leaf.y < -50) {
+                    leaf.x = Math.random() * canvas.width;
+                    leaf.y = -10;
+                }
+                const gradient = ctx.createLinearGradient(leaf.x, leaf.y, leaf.x + leaf.size, leaf.y + leaf.size);
+                gradient.addColorStop(0, `rgba(${leaf.color.r}, ${leaf.color.g}, ${leaf.color.b}, 0)`);
+                gradient.addColorStop(1, `rgba(${leaf.color.r}, ${leaf.color.g}, ${leaf.color.b}, 1)`);
+                ctx.fillStyle = gradient;
+                ctx.beginPath();
+                ctx.arc(leaf.x, leaf.y, leaf.size, 0, Math.PI * 2);
+                ctx.fill();
+            });
+            requestAnimationFrame(updateLeaves);
+        };
+        updateLeaves();
     }
 }
