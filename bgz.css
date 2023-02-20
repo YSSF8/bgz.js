@@ -1,0 +1,21 @@
+.bgz-rain {
+    position: fixed;
+    background: rgb(9, 137, 196);
+    width: .2rem;
+    height: 4rem;
+    display: flex;
+    /* box-shadow: 0 0 0 10px rgba(9, 137, 196, .7), 0 0 20px rgb(9, 137, 196), 0 0 100px rgb(9, 137, 196); */
+    animation: rain linear infinite;
+    animation-duration: calc(120s / var(--speed));
+    z-index: -999;
+}
+
+@keyframes rain {
+    0% {
+        transform: translateY(-40vh) scale(.5);
+    }
+
+    100% {
+        transform: translateY(230vh) scale(.5);
+    }
+}
