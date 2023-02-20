@@ -4,7 +4,7 @@ This is a library of canvas background effects that can be used to add some visu
 
 ## Installation
 
-To use this library, simply include the `canvas-bg.js` file in your HTML file:
+To use this library, simply include the `bgz.js` file in your HTML file:
 
 ```html
 <script src="canvas-bg.js"></script>
