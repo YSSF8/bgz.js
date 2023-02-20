@@ -31,7 +31,7 @@ To use this library, simply include the `bgz.js` file in your HTML file:
 #### Here are an example for using the rain effect
 
 ```javascript
-elementBg.rain('canvas', {
+elementBg.rain('.bg', {
   speed: {
       min: 90,
       max: 100
