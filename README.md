@@ -22,6 +22,7 @@ To use this library, simply include the `bgz.js` file in your HTML file:
 * matrix(element, options)
 * particleSystem(element, options)
 * waves(element, options)
+* leaves(element, options)
 
 ### Here are the available effects for a normal element and their options:
 
