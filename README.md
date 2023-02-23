@@ -23,6 +23,10 @@ To use this library, simply include the `bgz.js` file in your HTML file:
 * particleSystem(element, options)
 * waves(element, options)
 * leaves(element, options)
+* bouncingBalls(element, options)
+* clounds(element, options)
+* fireworks(element, options)
+* underwater(element, options)
 
 ### Here are the available effects for a normal element and their options:
 
